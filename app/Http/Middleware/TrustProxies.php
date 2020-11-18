@@ -13,7 +13,7 @@ class TrustProxies extends Middleware
      * @var array|string|null
      */
     protected $proxies;
-
+    protected $headers = Request:: HEADER_X_FORWARDED_AWS_ELB;
     /**
      * The headers that should be used to detect proxies.
      *
