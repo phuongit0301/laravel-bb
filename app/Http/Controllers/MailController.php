@@ -15,8 +15,8 @@ class MailController extends Controller
     	}
 
     	$image = $request->file('image');
-    	$realPath = $image->getRealPath();
     	$image->newImageName = time().'-'. $image->getClientOriginalName();
+    	$realPath = public_path().'/img/'. $image->newImageName;
 
     	$image->move(public_path().'/img/', $image->newImageName);
 
