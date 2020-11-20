@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
+	public function index() {
+		return 123;
+	}
+
     public function sendEmail(Request $request) { 
     	$title = '[Confirmation] Thank you for your register'; 
     	if(!$request->input('email') || !$request->hasFile('image')) {

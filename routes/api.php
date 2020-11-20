@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('v1/sendmail', 'MailController@sendEmail'); 
+Route::post('v1/sendmail', 'MailController@sendEmail');
+Route::get('v1/testing', 'MailController@index');
