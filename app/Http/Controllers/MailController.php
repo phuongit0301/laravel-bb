@@ -13,6 +13,7 @@ class MailController extends Controller
 	}
 
     public function sendEmail(Request $request) { 
+		return response()->json(['image' => $request->input('image')]);
     	$title = '[Confirmation] Thank you for your register'; 
     	if(!$request->input('email') || !$request->hasFile('image')) {
     		return response()->json(['message' => 'Format is bad'], 400);
