@@ -13,18 +13,16 @@ class SendMail extends Mailable
 
     use Queueable, SerializesModels;
     public $title;
-    public $image;
-    public $realPath;
+    public $email;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($title, $image, $realPath)
+    public function __construct($title, $email)
     {
         $this->title = $title;
-        $this->image = $image;
-        $this->realPath = $realPath;
+        $this->email = $email;
     }
 
     /**
@@ -35,11 +33,6 @@ class SendMail extends Mailable
     public function build()
     {
         return $this->subject($this->title)
-                    ->attach($this->realPath,
-                    [
-                        'as' => $this->image->getClientOriginalName(),
-                        'mime' => $this->image->getClientMimeType(),
-                    ])
                     ->view('qrcode');
     }
 }

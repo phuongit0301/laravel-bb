@@ -13,19 +13,12 @@ class MailController extends Controller
 	}
 
     public function sendEmail(Request $request) { 
-		return response()->json(['image' => $request->input('image')]);
     	$title = '[Confirmation] Thank you for your register'; 
-    	if(!$request->input('email') || !$request->hasFile('image')) {
+    	if(!$request->input('email')) {
     		return response()->json(['message' => 'Format is bad'], 400);
     	}
 
-    	$image = $request->file('image');
-    	$image->newImageName = time().'-'. $image->getClientOriginalName();
-    	$realPath = public_path().'/img/'. $image->newImageName;
-
-    	$image->move(public_path().'/img/', $image->newImageName);
-
-    	$sendmail = Mail::to($request->input('email'))->send(new SendMail($title, $image, $realPath));
+    	$sendmail = Mail::to($request->input('email'))->send(new SendMail($title, $request->input('email')));
     	if (empty($sendmail)) { 
     		return response()->json(['message' => 'Mail Sent Sucssfully'], 200); 
     	} else { 
